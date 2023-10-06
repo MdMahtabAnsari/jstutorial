@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Change</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            flex-wrap: wrap;
+        }
+        .box{
+            border: 2px solid black;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+
+        }
+        #green{
+            background-color: green;
+        }
+        #yellow{
+            background-color: yellow;
+        }
+        #blue{
+            background-color: blue;
+        }
+        #red{
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+       <div class="box" id="green"></div>
+        <div class="box" id="yellow"></div>
+        <div class="box" id="blue"></div>
+        <div class="box" id="red"></div>
+
+    </div>
+</body>
+<script>
+    const box=document.querySelectorAll(".box")
+    const body=document.querySelector(".container")
+    box.forEach((btn)=>{
+        btn.addEventListener("click",(event)=>{
+            body.style.backgroundColor=event.target.id
+        })
+    })
+</script>
+</html>
