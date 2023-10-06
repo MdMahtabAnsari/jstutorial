@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+           
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .box {
+            height: 50px;
+            width: 200px;
+            background-color: bisque;
+            border: 2px solid black;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Your Local Time</h1>
+    <div class="box">
+
+    </div>
+</body>
+<script>
+
+    const box = document.querySelector(".box")
+
+    setInterval(() => {
+        const time = new Date()
+
+        box.innerHTML = `${time.getDate()}/${time.getMonth()+1}/${time.getFullYear()}  ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
+    }, 1000)
+</script>
+
+</html>
