@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendom Color</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .btn{
+            width: 70px;
+            height: 30px;
+            font-weight: bolder;
+            font-size: 15px;
+        }
+        #start{
+            background-color: green;
+        }
+        #stop{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Start should change the Background color every second</h1>
+    <button class="btn" id="start">Start</button>
+    <button class="btn" id="stop">Stop</button>
+</body>
+<script>
+   
+    function randomNo() {
+        return Math.round(Math.random()*255)
+    }
+    const body=document.querySelector("body")
+    let intervelId=null
+    document.querySelector("#start").addEventListener("click",()=>{
+        intervelId=setInterval(()=>{
+            body.style.backgroundColor=`rgb(${randomNo()},${randomNo()},${randomNo()})`
+        },1000)
+    })
+    document.querySelector("#stop").addEventListener("click",()=>{
+        clearInterval(intervelId)
+    })
+</script>
+</html>
