@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess number</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+
+        }
+
+        #game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+
+        .btn {
+            border: 2px solid black;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 140px;
+            text-align: center;
+
+            
+
+        }
+
+        #dark-light {
+            margin: 20px;
+        }
+
+        /* input {
+            width: 200px;
+            height: 30px;
+        } */
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <p>Try and guess a random number between 1 and 100.</p>
+        <p>You have 10 attempts to guess right number</p>
+        <div id="game">
+            <h2>Guess The Number</h2>
+            <form action="" id="form">
+                <input type="number" name="num" id="num">
+                <p id="match"></p>
+                
+                <input type="submit" value="Submit Guess" class="btn" id="submit">
+
+            </form>
+
+            <p id="PGuess">Previous Guess:</p>
+            <p id="RGuess">Guesses Remaining:</p>
+
+        </div>
+        <div class="btn" id="dark-light">Dark/Light</div>
+
+    </div>
+
+</body>
+<script>
+    let Dark = false;
+    let guess = 10
+    let Previous = new Array()
+    const body = document.querySelector("body")
+    const dark_light = document.querySelector('#dark-light')
+    const button = document.querySelector('.btn')
+    const form = document.querySelector("#form")
+    const submit=document.querySelector("#submit")
+    const output= document.querySelector("#match")
+    const PGuess=document.querySelector("#PGuess")
+    const RGuess=document.querySelector("#RGuess")
+
+    function popall(array) {
+        while(array.length>0){
+            array.pop()
+        }
+    }
+    form.addEventListener("submit", (event) => {
+        event.preventDefault()
+        const givenNo =parseInt(document.querySelector("#num").value)
+       
+        const Number = Math.floor(Math.random() * (100) + 1)
+        
+        if (isNaN(givenNo) || givenNo<1 || givenNo>100) {
+           output.innerHTML="Please Provide the valid No."
+           PGuess.innerHTML=`Previous Guess:${Previous}`
+           RGuess.innerHTML=`Remaining Guess:${guess}`
+        }
+        else if(givenNo===Number){
+            output.innerHTML=`Matched: ${givenNo}==${Number}`
+            Previous.push(givenNo)
+            PGuess.innerHTML=`Previous Guess:${Previous}`
+           
+            guess--
+            RGuess.innerHTML=`Remaining Guess:${guess}`
+            if(guess===0){
+                popall(Previous)
+                guess=10
+            }
+           
+        }
+        else{
+            output.innerHTML=`Not Matched: ${givenNo}!=${Number}`
+            Previous.push(givenNo)
+            PGuess.innerHTML=`Previous Guess:${Previous}`
+           
+            guess--
+            RGuess.innerHTML=`Remaining Guess:${guess}`
+            if(guess===0){
+                popall(Previous)
+                guess=10
+            }
+            
+        }
+       
+
+    })
+
+
+
+    dark_light.addEventListener("click", () => {
+        if (Dark === false) {
+            Dark = true
+            body.style.backgroundColor = '#212121'
+            body.style.color = '#fff'
+            button.style.borderColor = '#fff'
+            dark_light.style.borderColor = '#fff'
+            submit.style.backgroundColor = '#212121'
+            submit.style.color = '#fff'
+            
+
+
+        }
+        else {
+            Dark = false
+            body.style.backgroundColor = 'white'
+            body.style.color = 'black'
+            button.style.borderColor = 'black'
+            dark_light.style.borderColor = 'black'
+            submit.style.backgroundColor = 'white'
+            submit.style.color = 'black'
+        }
+    })
+
+</script>
+
+</html>

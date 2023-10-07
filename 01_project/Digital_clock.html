@@ -51,7 +51,7 @@
     setInterval(() => {
         const time = new Date()
 
-        box.innerHTML = `${time.getDate()}/${time.getMonth()+1}/${time.getFullYear()}  ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
+        box.innerHTML = `${time.getDate()}/${time.getMonth()+1}/${time.getFullYear()}  ${time.toLocaleTimeString()}`
     }, 1000)
 </script>
 
